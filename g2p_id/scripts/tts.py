@@ -56,6 +56,14 @@ def ganti_angka(s):
         s = s[:awal] + t + s[akhir:]
 
 
+def ganti_persen(s):
+    while True:
+        i = s.find('%')
+        if i < 0:
+            return s
+        s = s[:i] + ' persen' + s[i+1:]
+
+
 def ganti_titik_dua(s):
     while True:
         match = re.search(r'\b\w+:', s)
@@ -74,6 +82,7 @@ def text_normalization(content):
         if line[-1] not in ['.', '?', '!']:
             line = line + '.'
         line = ganti_angka(line)
+        line = ganti_persen(line)
         line = ganti_titik_dua(line)
         text_list.append(line)
     return '\n'.join(text_list)

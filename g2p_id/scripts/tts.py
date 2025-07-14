@@ -119,6 +119,6 @@ def main(argv=sys.argv[1:]):
         text = option.text
     if tts(text, option.speaker, option.output_file) != 0:
         return
-    obj = WaveObject.from_wave_file(output_file)
+    obj = WaveObject.from_wave_file(option.output_file)
     p = obj.play()
     p.wait_done()
